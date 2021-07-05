@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'locator.config.dart';
+import 'package:gratitudejournal/services/apiServices.dart';
 
 final locator = GetIt.instance;
 
-@injectableInit
-void setupLoactor() => $initGetIt(locator);
+void setupLoactor() {
+  log("REGISTER STUFF");
+  locator.registerLazySingleton<ApiServices>(() => ApiServices());
+}

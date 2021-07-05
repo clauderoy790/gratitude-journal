@@ -55,6 +55,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: TextField(
+                    controller: model.txtUsername,
                     style: TextStyle(color: AppColors.textFieldColor),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(
@@ -80,6 +81,7 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15, bottom: 0),
                   child: TextField(
+                    controller: model.txtPassword,
                     style: TextStyle(color: Color(0xFF6d6d78)),
                     obscureText: true,
                     decoration: InputDecoration(
@@ -139,10 +141,7 @@ class LoginView extends StatelessWidget {
                                 primary: Colors.white,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15))),
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteManager.journalPage);
-                            },
+                            onPressed: model.login,
                             child: Text(
                               "Sign In",
                               style: TextStyle(
@@ -161,6 +160,7 @@ class LoginView extends StatelessWidget {
         ),
       ),
       viewModelBuilder: () => LoginViewModel(),
+      onModelReady: (model) => {model.initialize()},
     );
   }
 }
